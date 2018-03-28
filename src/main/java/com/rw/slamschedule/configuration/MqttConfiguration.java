@@ -31,7 +31,7 @@ public class MqttConfiguration {
     @Value("${mqtt.url}")
     private String mqttUrl;
 
-    @Value("${mqtt.subscribe")
+    @Value("${mqtt.subscribe}")
     private String mqttSubscribe;
 
     @Value("${mqtt.qos}")

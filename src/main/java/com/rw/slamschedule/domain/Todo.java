@@ -1,90 +1,99 @@
 package com.rw.slamschedule.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@IdClass(TodoPk.class)
 public class Todo {
+
     @Id
-    @GeneratedValue
-    private Long id;
+    private String terminalId;
+
+    @Id
+    private String buttonId;
+
+    @Id
+    private String sendTimestamp;
 
     @Column
-    private Long commandMapperId;
-
-    @Column
-    private Integer terminalId;
-
-    @Column
-    private Integer buttonId;
+    private Integer commandMapperId;
 
     /**执行命令的slam id*/
     @Column
-    private Integer slamId;
+    private String slamId;
 
     /**执行状态*/
     @Column
-    private Integer state;
+    private String state;
 
     /**接收时间时间戳*/
     @Column
-    private Integer receiveTimestamp;
+    private Long receiveTimestamp = System.currentTimeMillis();
 
-    public Long getId() {
-        return id;
-    }
+    @Column
+    private Long doingTimestamp;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCommandMapperId() {
-        return commandMapperId;
-    }
-
-    public void setCommandMapperId(Long commandMapperId) {
-        this.commandMapperId = commandMapperId;
-    }
-
-    public Integer getTerminalId() {
+    public String getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(Integer terminalId) {
+    public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
-    public Integer getButtonId() {
+    public String getButtonId() {
         return buttonId;
     }
 
-    public void setButtonId(Integer buttonId) {
+    public void setButtonId(String buttonId) {
         this.buttonId = buttonId;
     }
 
-    public Integer getSlamId() {
+    public String getSendTimestamp() {
+        return sendTimestamp;
+    }
+
+    public void setSendTimestamp(String sendTimestamp) {
+        this.sendTimestamp = sendTimestamp;
+    }
+
+    public Integer getCommandMapperId() {
+        return commandMapperId;
+    }
+
+    public void setCommandMapperId(Integer commandMapperId) {
+        this.commandMapperId = commandMapperId;
+    }
+
+    public String getSlamId() {
         return slamId;
     }
 
-    public void setSlamId(Integer slamId) {
+    public void setSlamId(String slamId) {
         this.slamId = slamId;
     }
 
-    public Integer getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(String state) {
         this.state = state;
     }
 
-    public Integer getReceiveTimestamp() {
+    public Long getReceiveTimestamp() {
         return receiveTimestamp;
     }
 
-    public void setReceiveTimestamp(Integer receiveTimestamp) {
+    public void setReceiveTimestamp(Long receiveTimestamp) {
         this.receiveTimestamp = receiveTimestamp;
+    }
+
+    public Long getDoingTimestamp() {
+        return doingTimestamp;
+    }
+
+    public void setDoingTimestamp(Long doingTimestamp) {
+        this.doingTimestamp = doingTimestamp;
     }
 }

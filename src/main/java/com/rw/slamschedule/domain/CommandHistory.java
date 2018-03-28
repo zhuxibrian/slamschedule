@@ -6,32 +6,32 @@ import javax.persistence.*;
 public class CommandHistory {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @Lob
     @Basic(fetch= FetchType.LAZY)
     private String commandString;
 
     @Column
-    private Integer terminalId;
+    private String terminalId;
 
     @Column
-    private Integer buttonId;
+    private String buttonId;
 
     @Column
-    private Integer slamId;
+    private String slamId;
 
     @Column
-    private Integer receiveTimestamp;
+    private Long receiveTimestamp;
 
     @Column
-    private Integer finishTimestamp;
+    private Long finishTimestamp;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,43 +43,43 @@ public class CommandHistory {
         this.commandString = commandString;
     }
 
-    public Integer getTerminalId() {
+    public String getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(Integer terminalId) {
+    public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
-    public Integer getButtonId() {
+    public String getButtonId() {
         return buttonId;
     }
 
-    public void setButtonId(Integer buttonId) {
+    public void setButtonId(String buttonId) {
         this.buttonId = buttonId;
     }
 
-    public Integer getSlamId() {
+    public String getSlamId() {
         return slamId;
     }
 
-    public void setSlamId(Integer slamId) {
+    public void setSlamId(String slamId) {
         this.slamId = slamId;
     }
 
-    public Integer getReceiveTimestamp() {
+    public Long getReceiveTimestamp() {
         return receiveTimestamp;
     }
 
-    public void setReceiveTimestamp(Integer receiveTimestamp) {
+    public void setReceiveTimestamp(Long receiveTimestamp) {
         this.receiveTimestamp = receiveTimestamp;
     }
 
-    public Integer getFinishTimestamp() {
+    public Long getFinishTimestamp() {
         return finishTimestamp;
     }
 
-    public void setFinishTimestamp(Integer finishTimestamp) {
+    public void setFinishTimestamp(Long finishTimestamp) {
         this.finishTimestamp = finishTimestamp;
     }
 }

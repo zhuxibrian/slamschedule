@@ -1,16 +1,13 @@
 package com.rw.slamschedule.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Terminal {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
 
     @Column
     private String name;
@@ -22,11 +19,14 @@ public class Terminal {
     @Column
     private Double locationY;
 
-    public Integer getId() {
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "terminal")
+    List<Button> buttonList;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,5 +52,13 @@ public class Terminal {
 
     public void setLocationY(Double locationY) {
         this.locationY = locationY;
+    }
+
+    public List<Button> getButtonList() {
+        return buttonList;
+    }
+
+    public void setButtonList(List<Button> buttonList) {
+        this.buttonList = buttonList;
     }
 }

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Slam {
 
     @Id
-    private Integer id;
+    private String id;
 
     @Column
     private String name;
@@ -17,7 +17,7 @@ public class Slam {
     private String ip;
 
     @Column
-    private Integer groupId;
+    private String groupId;
 
     @Column
     private Double locationX;
@@ -26,7 +26,18 @@ public class Slam {
     private Double locationY;
 
     @Column
-    private Boolean idle;
+    private String state;
+
+    private Integer battery;
+    private boolean charge;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -34,13 +45,6 @@ public class Slam {
 
     public void setName(String name) {
         this.name = name;
-    }
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getIp() {
@@ -51,11 +55,11 @@ public class Slam {
         this.ip = ip;
     }
 
-    public Integer getGroupId() {
+    public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Integer groupId) {
+    public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
@@ -75,11 +79,27 @@ public class Slam {
         this.locationY = locationY;
     }
 
-    public Boolean getIdle() {
-        return idle;
+    public String getState() {
+        return state;
     }
 
-    public void setIdle(Boolean idle) {
-        this.idle = idle;
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Integer getBattery() {
+        return battery;
+    }
+
+    public void setBattery(Integer battery) {
+        this.battery = battery;
+    }
+
+    public boolean isCharge() {
+        return charge;
+    }
+
+    public void setCharge(boolean charge) {
+        this.charge = charge;
     }
 }

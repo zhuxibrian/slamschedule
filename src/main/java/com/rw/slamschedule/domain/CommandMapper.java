@@ -1,53 +1,46 @@
 package com.rw.slamschedule.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class CommandMapper {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
-    @Column
-    private Integer terminalId;
+    @Column(unique = true)
+    private String name;
 
-    @Column
-    private Integer buttonId;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "commandMapper")
+    @OrderBy(value = "id asc")
+    private List<Submessage> submessages;
 
-    @Lob
-    @Basic(fetch=FetchType.LAZY)
-    private String commandString;
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getTerminalId() {
-        return terminalId;
+    public List<Submessage> getSubmessages() {
+        return submessages;
     }
 
-    public void setTerminalId(Integer terminalId) {
-        this.terminalId = terminalId;
+    public void setSubmessages(List<Submessage> submessages) {
+        this.submessages = submessages;
     }
 
-    public Integer getButtonId() {
-        return buttonId;
+
+    public String getName() {
+        return name;
     }
 
-    public void setButtonId(Integer buttonId) {
-        this.buttonId = buttonId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCommandString() {
-        return commandString;
-    }
-
-    public void setCommandString(String commandString) {
-        this.commandString = commandString;
-    }
 }
+

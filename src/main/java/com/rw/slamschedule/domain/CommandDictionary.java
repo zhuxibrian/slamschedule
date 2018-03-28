@@ -1,6 +1,7 @@
 package com.rw.slamschedule.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -13,13 +14,14 @@ import javax.persistence.Id;
  * @Date   20180209
  * @version 1.00
  */
+@Entity
 public class CommandDictionary {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @Column
-    private String key;
+    private String keyName;
 
     @Column
     private String valueType;
@@ -28,25 +30,26 @@ public class CommandDictionary {
     private String value;
 
     @Column
-    private String parentId;
+    private Long parentId;
 
     @Column
-    private String sonId;
+    private Long sonId;
 
-    public Long getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getKeyName() {
+        return keyName;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
     }
 
     public String getValueType() {
@@ -65,19 +68,19 @@ public class CommandDictionary {
         this.value = value;
     }
 
-    public String getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
-    public String getSonId() {
+    public Long getSonId() {
         return sonId;
     }
 
-    public void setSonId(String sonId) {
+    public void setSonId(Long sonId) {
         this.sonId = sonId;
     }
 }
