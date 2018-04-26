@@ -54,7 +54,7 @@ public class CommandMapperServiceImpl implements CommandMapperService {
     }
 
     @Override
-    public Page<CommandMapper> findAll(Integer page, Integer size) {
+    public Page<CommandMapper> findPage(Integer page, Integer size) {
         Sort.Order order = new Sort.Order(Sort.Direction.ASC,"id");
         Sort sort = new Sort(order);
         Pageable pageable = new PageRequest(page, size, sort);

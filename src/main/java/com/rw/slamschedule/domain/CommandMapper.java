@@ -42,5 +42,9 @@ public class CommandMapper {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "CommandMapper to string";
+    }
 }
 

@@ -7,7 +7,7 @@ import java.util.List;
 public class Terminal {
 
     @Id
-    private String id;
+    private Integer id;
 
     @Column
     private String name;
@@ -20,13 +20,13 @@ public class Terminal {
     private Double locationY;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "terminal")
-    List<Button> buttonList;
+    List<Button> buttons;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,11 +54,11 @@ public class Terminal {
         this.locationY = locationY;
     }
 
-    public List<Button> getButtonList() {
-        return buttonList;
+    public List<Button> getButtons() {
+        return buttons;
     }
 
-    public void setButtonList(List<Button> buttonList) {
-        this.buttonList = buttonList;
+    public void setButtons(List<Button> buttons) {
+        this.buttons = buttons;
     }
 }

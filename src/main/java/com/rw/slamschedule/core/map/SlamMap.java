@@ -1,4 +1,4 @@
-package com.rw.slamschedule.bean;
+package com.rw.slamschedule.core.map;
 
 import com.rw.slamschedule.domain.Slam;
 import org.springframework.stereotype.Component;
@@ -9,21 +9,21 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class SlamMap {
 
-    private Map<String, Slam> slamMap;
+    private Map<Integer, Slam> slamMap;
 
     public SlamMap() {
         this.slamMap = new ConcurrentHashMap<>();
     }
     
     public void addOrUpdateSlam(Slam slam) {
-        slamMap.put(slam.getId(), slam);
+        slamMap.put(slam.getSlamId(), slam);
     }
 
-    public void removeSlam(String id) {
+    public void removeSlam(Integer id) {
         slamMap.remove(id);
     }
 
-    public Slam findOneById(String id) {
+    public Slam findOneById(Integer id) {
         return slamMap.get(id);
     }
     
@@ -54,24 +54,13 @@ public class SlamMap {
     }
 
     public boolean isNeedUpdateDao(Slam slam) {
-        if (slamMap.get(slam.getId()) == null)
+        if (slamMap.get(slam.getSlamId()) == null)
             return true;
 
-        if (slam.getState().equals(slamMap.get(slam.getId()).getState())
-                && Objects.equals(slam.getGroupId(), slamMap.get(slam.getId()).getGroupId()))
+        if (slam.getState().equals(slamMap.get(slam.getSlamId()).getState()))
             return false;
         else
             return true;
 
-    }
-
-    public List<Slam> findByGroupId(String groupId) {
-        List<Slam> slams = new ArrayList<>();
-        for (Slam slam : slamMap.values()) {
-            if (slam.getGroupId().equals(groupId)) {
-                slams.add(slam);
-            }
-        }
-        return slams;
     }
 }

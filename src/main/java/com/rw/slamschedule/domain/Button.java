@@ -7,19 +7,14 @@ import javax.persistence.*;
 @Entity
 public class Button {
     @Id
-    private String id;
+    @GeneratedValue
+    private Integer id;
 
     @Column
-    private String name;
+    private Integer buttonId;
 
     @Column
-    private String targetRange;
-
-    @Column
-    private String targetId;
-
-    @Column
-    private Integer commandMapperId;
+    private String commandMapperName;
 
     @ManyToOne
     @JoinColumn(name = "terminalId",foreignKey = @ForeignKey(name = "fk_terminal_fc"))
@@ -27,44 +22,28 @@ public class Button {
     private Terminal terminal;
 
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getButtonId() {
+        return buttonId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setButtonId(Integer buttonId) {
+        this.buttonId = buttonId;
     }
 
-    public String getTargetRange() {
-        return targetRange;
+    public String getCommandMapperName() {
+        return commandMapperName;
     }
 
-    public void setTargetRange(String targetRange) {
-        this.targetRange = targetRange;
-    }
-
-    public String getTargetId() {
-        return targetId;
-    }
-
-    public void setTargetId(String targetId) {
-        this.targetId = targetId;
-    }
-
-    public Integer getCommandMapperId() {
-        return commandMapperId;
-    }
-
-    public void setCommandMapperId(Integer commandMapperId) {
-        this.commandMapperId = commandMapperId;
+    public void setCommandMapperName(String commandMapperName) {
+        this.commandMapperName = commandMapperName;
     }
 
     public Terminal getTerminal() {

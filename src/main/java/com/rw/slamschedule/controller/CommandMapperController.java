@@ -62,7 +62,7 @@ public class CommandMapperController {
         return service.updateCommandMapper(commandMapper);
     }
 
-    @PatchMapping(value = "/addSubmessage/{id}")
+    @PatchMapping(value = "/addsubmessage/{id}")
     public CommandMapper patchAddSubmessage(@PathVariable("id") Integer id, @RequestBody Submessage submessage) throws IOException {
         service.addSubmessage(id, submessage);
         return service.findOne(id);
@@ -70,7 +70,7 @@ public class CommandMapperController {
 
     @GetMapping(value = "/page/{page}/size/{size}")
     public Page<CommandMapper> getCommandMapperByPage(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
-        return service.findAll(page, size);
+        return service.findPage(page-1, size);
     }
 
 

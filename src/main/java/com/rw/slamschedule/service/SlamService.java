@@ -14,9 +14,7 @@ public interface SlamService {
 
     void removeSlam(Slam slam);
 
-    Slam findOne(String id);
-
-    List<Slam> findByGroupId(String groupId);
+    Slam findOne(Integer id);
 
     List<Slam> findAll();
 

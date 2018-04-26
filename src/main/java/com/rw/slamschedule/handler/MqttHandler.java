@@ -1,7 +1,7 @@
 package com.rw.slamschedule.handler;
 
 
-import com.rw.slamschedule.bean.MqttComponent;
+import com.rw.slamschedule.core.component.MqttComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class MqttHandler implements MessageHandler {
     @Override
     public void handleMessage(Message<?> message) throws MessagingException {
         try {
-            System.out.println("----: "+message.getPayload());
+            System.out.println("----: "+ message.getHeaders().toString() + "msg:"+message.getPayload());
             mqttComponent.mqttMessageParse(message.getPayload().toString());
         } catch (IOException e) {
             logger.error(e.toString());

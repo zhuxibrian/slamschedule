@@ -1,11 +1,10 @@
 package com.rw.slamschedule.service.impl;
 
-import com.rw.slamschedule.bean.SlamMap;
+import com.rw.slamschedule.core.map.SlamMap;
 import com.rw.slamschedule.domain.Slam;
 import com.rw.slamschedule.repository.SlamRepository;
 import com.rw.slamschedule.service.SlamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,18 +39,13 @@ public class SlamServiceImpl implements SlamService{
 
     @Override
     public void removeSlam(Slam slam) {
-        slamMap.removeSlam(slam.getId());
+        slamMap.removeSlam(slam.getSlamId());
         slamRepository.delete(slam);
     }
 
     @Override
-    public Slam findOne(String id) {
+    public Slam findOne(Integer id) {
         return slamMap.findOneById(id);
-    }
-
-    @Override
-    public List<Slam> findByGroupId(String groupId) {
-        return slamMap.findByGroupId(groupId);
     }
 
     @Override

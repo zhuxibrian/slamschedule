@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ButtonRepository extends JpaRepository<Button, String>
+public interface ButtonRepository extends JpaRepository<Button, Integer>
 {
-    Button findByTerminal_IdAndId(String termId, String buttonId);
+    public Button findByTerminal_IdAndAndButtonId(Integer termId, Integer buttonId);
 
 }

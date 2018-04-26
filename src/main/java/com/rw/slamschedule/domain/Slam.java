@@ -1,82 +1,63 @@
 package com.rw.slamschedule.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Slam {
 
     @Id
-    private String id;
+    private Integer slamId;
 
     @Column
-    private String name;
+    private String text;
 
     @Column
-    private String ip;
-
-    @Column
-    private String groupId;
-
-    @Column
-    private Double locationX;
-
-    @Column
-    private Double locationY;
+    private String location;
 
     @Column
     private String state;
 
+    @Column
+    private String faultInfo;
+
+    @Column
+    private String serveState;
+
     private Integer battery;
-    private boolean charge;
+    private String rotation;
 
-    public String getId() {
-        return id;
+    private Long timestamp;
+
+
+
+    public Integer getSlamId() {
+        return slamId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSlamId(Integer slamId) {
+        this.slamId = slamId;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getIp() {
-        return ip;
+    public String getLocation() {
+        return location;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public Double getLocationX() {
-        return locationX;
-    }
-
-    public void setLocationX(Double locationX) {
-        this.locationX = locationX;
-    }
-
-    public Double getLocationY() {
-        return locationY;
-    }
-
-    public void setLocationY(Double locationY) {
-        this.locationY = locationY;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getState() {
@@ -95,11 +76,35 @@ public class Slam {
         this.battery = battery;
     }
 
-    public boolean isCharge() {
-        return charge;
+    public String getServeState() {
+        return serveState;
     }
 
-    public void setCharge(boolean charge) {
-        this.charge = charge;
+    public void setServeState(String serveState) {
+        this.serveState = serveState;
+    }
+
+    public String getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(String rotation) {
+        this.rotation = rotation;
+    }
+
+    public String getFaultInfo() {
+        return faultInfo;
+    }
+
+    public void setFaultInfo(String faultInfo) {
+        this.faultInfo = faultInfo;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

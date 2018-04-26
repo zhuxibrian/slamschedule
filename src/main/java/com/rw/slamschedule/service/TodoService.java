@@ -18,13 +18,18 @@ public interface TodoService {
 
     List<Todo> findAllByState(String state);
 
-    Todo findOneBySlamIdAndState(String slamId, String state);
+    Todo findOneBySlamIdAndState(Integer slamId, String state);
+
+    Todo findOneBySlamId(Integer slamId);
 
     @Modifying
     void updateState(Todo todo);
 
     @Modifying
     void updateSlamIdAndState(Todo todo);
+
+    @Modifying
+    void updateStateAndDoingTimestamp(Todo todo);
 
 
 }

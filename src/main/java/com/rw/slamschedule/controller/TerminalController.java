@@ -5,6 +5,7 @@ import com.rw.slamschedule.domain.*;
 import com.rw.slamschedule.exception.RwException;
 import com.rw.slamschedule.service.TerminalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,54 +19,64 @@ public class TerminalController {
     @Autowired
     TerminalService terminalService;
 
-    @Autowired
-    ObjectMapper mapper;
-
     @GetMapping
     public List<Terminal> getAllTerminals() {
         return terminalService.findAll();
     }
 
+    @GetMapping(value = "/page/{page}/size/{size}")
+    public Page<Terminal> getTerminalByPage(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+        return terminalService.findPage(page-1, size);
+    }
+
     @GetMapping(value="/{id}")
-    public Terminal getTerminalById(@PathVariable String id) {
+    public Terminal getTerminalById(@PathVariable("id") Integer id) {
         return terminalService.findById(id);
     }
 
     @PostMapping
     @Transactional(rollbackFor = RwException.class)
-    public Terminal postTerminal(@RequestBody String string) throws IOException, RwException {
-        Terminal terminal = mapper.readValue(string, Terminal.class);
+    public Terminal postTerminal(@RequestBody Terminal terminal) throws IOException, RwException {
 
+        if (terminal.getId() == null) {
+            throw new RwException("terminal id is null！", "");
+        }
         if (terminalService.findById(terminal.getId()) != null) {
             throw new RwException("terminal already exist！", "");
-
         }
 
-        for (Button button:terminal.getButtonList()) {
-            button.setTerminal(terminal);
-        }
-
+        setTerminal(terminal);
         terminalService.addTerminal(terminal);
 
         return terminal;
     }
 
     @DeleteMapping(value = "/{id}")
-    public Terminal deleteTerminalById(@PathVariable String id) {
+    public Terminal deleteTerminalById(@PathVariable("id") Integer id) {
         Terminal terminal = terminalService.findById(id);
         terminalService.removeTerminal(id);
         return terminal;
     }
 
     @PutMapping
-    public Terminal putTerminal(@RequestBody String string) throws IOException {
-        Terminal terminal = mapper.readValue(string, Terminal.class);
-        for (Button button:terminal.getButtonList()) {
+    public Terminal putTerminal(@RequestBody Terminal terminal) throws IOException {
+        setTerminal(terminal);
+        terminalService.updateTerminal(terminal);
+        return terminal;
+    }
+
+    @PatchMapping(value = "/addbutton/{id}")
+    public Terminal patchAddButton(@PathVariable("id") Integer id, @RequestBody Button button) {
+        return terminalService.addButton(id, button);
+    }
+
+
+    private void setTerminal(Terminal terminal) {
+        if (terminal.getButtons() == null)
+            return;
+
+        for (Button button:terminal.getButtons()) {
             button.setTerminal(terminal);
         }
-
-        terminalService.updateTerminal(terminal);
-
-        return terminal;
     }
 }

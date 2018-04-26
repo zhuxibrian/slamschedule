@@ -1,6 +1,8 @@
-package com.rw.slamschedule.bean.pojo;
+package com.rw.slamschedule.core.dto.sendMessage;
 
-public class MqttSendTerminalMessage extends MqttHead{
+import com.rw.slamschedule.core.dto.MqttHead;
+
+public class MqttSendTermMessage extends MqttHead {
 
     private String id;
     private String buttonId;

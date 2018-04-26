@@ -1,7 +1,6 @@
 package com.rw.slamschedule.service.impl;
 
 import com.rw.slamschedule.domain.Todo;
-import com.rw.slamschedule.domain.TodoPk;
 import com.rw.slamschedule.repository.TodoRepository;
 import com.rw.slamschedule.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void removeTodo(Todo todo) {
-        repository.deleteByTerminalIdAndButtonIdAndSendTimestamp(todo.getTerminalId(),
-                todo.getButtonId(),
-                todo.getSendTimestamp());
+        repository.delete(todo.getId());
     }
 
 
@@ -54,8 +51,13 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo findOneBySlamIdAndState(String slamId, String state) {
+    public Todo findOneBySlamIdAndState(Integer slamId, String state) {
         return repository.findBySlamIdAndState(slamId, state);
+    }
+
+    @Override
+    public Todo findOneBySlamId(Integer slamId) {
+        return repository.findBySlamId(slamId);
     }
 
 
@@ -69,6 +71,8 @@ public class TodoServiceImpl implements TodoService {
         repository.save(todoUpdate);
     }
 
+
+
     @Override
     @Transactional
     public void updateSlamIdAndState(Todo todo) {
@@ -77,6 +81,17 @@ public class TodoServiceImpl implements TodoService {
                 todo.getSendTimestamp());
         todoUpdate.setSlamId(todo.getSlamId());
         todoUpdate.setState(todo.getState());
+        repository.save(todoUpdate);
+    }
+
+    @Override
+    @Transactional
+    public void updateStateAndDoingTimestamp(Todo todo) {
+        Todo todoUpdate = repository.findByTerminalIdAndButtonIdAndSendTimestamp(todo.getTerminalId(),
+                todo.getButtonId(),
+                todo.getSendTimestamp());
+        todoUpdate.setState(todo.getState());
+        todoUpdate.setDoingTimestamp(System.currentTimeMillis());
         repository.save(todoUpdate);
     }
 

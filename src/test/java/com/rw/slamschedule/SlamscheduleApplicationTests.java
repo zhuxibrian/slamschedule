@@ -6,6 +6,7 @@ import com.rw.slamschedule.controller.CommandMapperController;
 import com.rw.slamschedule.domain.*;
 import com.rw.slamschedule.repository.CommandMapperRepository;
 import com.rw.slamschedule.repository.SubmessageRepository;
+import com.rw.slamschedule.repository.TerminalRepository;
 import com.rw.slamschedule.service.CommandMapperService;
 import com.rw.slamschedule.service.SubmessageService;
 import com.rw.slamschedule.service.TerminalService;
@@ -14,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -80,7 +82,7 @@ public class SlamscheduleApplicationTests {
 		submessage.setPoints(points);
 		submessage.setAppending("1");
 		submessage.setIsMilestone("1");
-		submessage.setServeTime("1000");
+		//submessage.setServeTime("1000");
 		submessage.setPoints(points);
 		point.setSubmessage(submessage);
 		List<Submessage> submessages = new ArrayList<>();
@@ -102,27 +104,7 @@ public class SlamscheduleApplicationTests {
 
 	}
 
-	@Test
-	public void testTerminalService() throws JsonProcessingException {
-		Terminal terminal = new Terminal();
-		terminal.setId("1");
-		terminal.setName("1");
-		terminal.setLocationX(1.1);
-		terminal.setLocationY(1.2);
 
-		Button button = new Button();
-		button.setId("1");
-		button.setName("1");
-		button.setCommandMapperId(1);
-		button.setTerminal(terminal);
-		List<Button> buttons = new ArrayList<>();
-		buttons.add(button);
-		terminal.setButtonList(buttons);
-
-		terminalService.addTerminal(terminal);
-
-		String json = mapper.writeValueAsString(terminal);
-	}
 
 	@Autowired
 	SubmessageRepository submessageRepository;
@@ -132,6 +114,14 @@ public class SlamscheduleApplicationTests {
 
 	@Test
 	public void testDeleteSubmessage() {
+
 		submessageService.removeSubmessage(12);
+	}
+
+	@Autowired
+	TerminalRepository terminalRepository;
+
+	@Test
+	public void testDeleteTerminal(){
 	}
 }

@@ -13,13 +13,13 @@ public class CommandHistory {
     private String commandString;
 
     @Column
-    private String terminalId;
+    private Integer terminalId;
 
     @Column
-    private String buttonId;
+    private Integer buttonId;
 
     @Column
-    private String slamId;
+    private Integer slamId;
 
     @Column
     private Long receiveTimestamp;
@@ -43,27 +43,27 @@ public class CommandHistory {
         this.commandString = commandString;
     }
 
-    public String getTerminalId() {
+    public Integer getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(String terminalId) {
+    public void setTerminalId(Integer terminalId) {
         this.terminalId = terminalId;
     }
 
-    public String getButtonId() {
+    public Integer getButtonId() {
         return buttonId;
     }
 
-    public void setButtonId(String buttonId) {
+    public void setButtonId(Integer buttonId) {
         this.buttonId = buttonId;
     }
 
-    public String getSlamId() {
+    public Integer getSlamId() {
         return slamId;
     }
 
-    public void setSlamId(String slamId) {
+    public void setSlamId(Integer slamId) {
         this.slamId = slamId;
     }
 

@@ -20,7 +20,7 @@ public interface CommandMapperService  {
 
     CommandMapper findByName(String name);
 
-    Page<CommandMapper> findAll(Integer page, Integer size);
+    Page<CommandMapper> findPage(Integer page, Integer size);
 
     CommandMapper addSubmessage(Integer id, Submessage submessage);
 }

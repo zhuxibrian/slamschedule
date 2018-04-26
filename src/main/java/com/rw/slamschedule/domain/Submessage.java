@@ -12,6 +12,7 @@ public class Submessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**子命令注释*/
     @Column
     private String submessage;
 
@@ -25,8 +26,19 @@ public class Submessage {
     @Column
     private String isMilestone;
 
+    /**充电桩序号*/
     @Column
-    private String serveTime;
+    private String slot;
+
+    @Column
+    private String timeout;
+
+    @Column
+    private String action;
+
+    /**手动控制方向*/
+    @Column
+    private String direct;
 
     @ManyToOne
     @JoinColumn(name = "commandMapperId",foreignKey = @ForeignKey(name = "fk_commandMapper_fc"))
@@ -65,12 +77,36 @@ public class Submessage {
         this.isMilestone = isMilestone;
     }
 
-    public String getServeTime() {
-        return serveTime;
+    public String getSlot() {
+        return slot;
     }
 
-    public void setServeTime(String serveTime) {
-        this.serveTime = serveTime;
+    public void setSlot(String slot) {
+        this.slot = slot;
+    }
+
+    public String getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(String timeout) {
+        this.timeout = timeout;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getDirect() {
+        return direct;
+    }
+
+    public void setDirect(String direct) {
+        this.direct = direct;
     }
 
     public List<Point> getPoints() {
@@ -94,13 +130,15 @@ public class Submessage {
         return "Submessage{" +
                 "id=" + id +
                 ", submessage='" + submessage + '\'' +
-                ", points=" + points.toString() +
+                ", points=" + points +
                 ", appending='" + appending + '\'' +
                 ", isMilestone='" + isMilestone + '\'' +
-                ", serveTime='" + serveTime + '\'' +
+                ", slot='" + slot + '\'' +
+                ", timeout='" + timeout + '\'' +
+                ", action='" + action + '\'' +
+                ", direct='" + direct + '\'' +
+                ", commandMapper=" + commandMapper +
                 '}';
     }
-
-
 }
 

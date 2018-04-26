@@ -1,12 +1,13 @@
-package com.rw.slamschedule.bean.pojo;
+package com.rw.slamschedule.core.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MqttHead {
     private String messageType;
     private String text;
-    private String timestamp;
+    private Long timestamp;
     private String from;
 
     public String getMessageType() {
@@ -17,19 +18,11 @@ public class MqttHead {
         this.messageType = messageType;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -41,6 +34,14 @@ public class MqttHead {
         this.from = from;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return "MqttHead{" +
@@ -49,5 +50,28 @@ public class MqttHead {
                 ", timestamp='" + timestamp + '\'' +
                 ", from='" + from + '\'' +
                 '}';
+    }
+
+    @JsonIgnore
+    public String getTypeInFrom() {
+        return from.split("/")[1];
+    }
+
+    @JsonIgnore
+    public String getRangeInFrom() {
+        String stringList[] = from.split("/");
+        if (stringList.length < 3)
+            return null;
+
+        return stringList[2];
+    }
+
+    @JsonIgnore
+    public Integer getObjectIdInFrom() {
+        String stringList[] = from.split("/");
+        if (stringList.length < 4)
+            return null;
+
+        return Integer.valueOf(stringList[3]);
     }
 }

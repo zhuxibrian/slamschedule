@@ -3,24 +3,27 @@ package com.rw.slamschedule.domain;
 import javax.persistence.*;
 
 @Entity
-@IdClass(TodoPk.class)
 public class Todo {
 
     @Id
-    private String terminalId;
+    @GeneratedValue
+    private Long id;
 
-    @Id
-    private String buttonId;
+    @Column
+    private Integer terminalId;
 
-    @Id
-    private String sendTimestamp;
+    @Column
+    private Integer buttonId;
+
+    @Column
+    private Long sendTimestamp;
 
     @Column
     private Integer commandMapperId;
 
     /**执行命令的slam id*/
     @Column
-    private String slamId;
+    private Integer slamId;
 
     /**执行状态*/
     @Column
@@ -33,27 +36,35 @@ public class Todo {
     @Column
     private Long doingTimestamp;
 
-    public String getTerminalId() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(String terminalId) {
+    public void setTerminalId(Integer terminalId) {
         this.terminalId = terminalId;
     }
 
-    public String getButtonId() {
+    public Integer getButtonId() {
         return buttonId;
     }
 
-    public void setButtonId(String buttonId) {
+    public void setButtonId(Integer buttonId) {
         this.buttonId = buttonId;
     }
 
-    public String getSendTimestamp() {
+    public Long getSendTimestamp() {
         return sendTimestamp;
     }
 
-    public void setSendTimestamp(String sendTimestamp) {
+    public void setSendTimestamp(Long sendTimestamp) {
         this.sendTimestamp = sendTimestamp;
     }
 
@@ -65,11 +76,11 @@ public class Todo {
         this.commandMapperId = commandMapperId;
     }
 
-    public String getSlamId() {
+    public Integer getSlamId() {
         return slamId;
     }
 
-    public void setSlamId(String slamId) {
+    public void setSlamId(Integer slamId) {
         this.slamId = slamId;
     }
 
