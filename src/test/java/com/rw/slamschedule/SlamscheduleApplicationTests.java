@@ -27,7 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -85,7 +87,7 @@ public class SlamscheduleApplicationTests {
 		//submessage.setServeTime("1000");
 		submessage.setPoints(points);
 		point.setSubmessage(submessage);
-		List<Submessage> submessages = new ArrayList<>();
+		Set<Submessage> submessages = new HashSet<>();
 		submessages.add(submessage);
 
 		CommandMapper commandMapper = new CommandMapper();

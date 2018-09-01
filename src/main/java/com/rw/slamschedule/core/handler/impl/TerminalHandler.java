@@ -46,7 +46,6 @@ public class TerminalHandler implements ControlHandler {
 
     //@Override
     public void process() {
-
         if (termMessage == null) log.warn("Message struct is null");
         else {
             try{

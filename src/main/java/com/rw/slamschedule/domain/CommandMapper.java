@@ -2,6 +2,7 @@ package com.rw.slamschedule.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class CommandMapper {
@@ -15,7 +16,7 @@ public class CommandMapper {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "commandMapper")
     @OrderBy(value = "id asc")
-    private List<Submessage> submessages;
+    private Set<Submessage> submessages;
 
     public Integer getId() {
         return id;
@@ -25,11 +26,11 @@ public class CommandMapper {
         this.id = id;
     }
 
-    public List<Submessage> getSubmessages() {
+    public Set<Submessage> getSubmessages() {
         return submessages;
     }
 
-    public void setSubmessages(List<Submessage> submessages) {
+    public void setSubmessages(Set<Submessage> submessages) {
         this.submessages = submessages;
     }
 

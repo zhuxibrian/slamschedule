@@ -41,7 +41,7 @@ public class Submessage {
     private String direct;
 
     @ManyToOne
-    @JoinColumn(name = "commandMapperId",foreignKey = @ForeignKey(name = "fk_commandMapper_fc"))
+    @JoinColumn(name = "commandMapperId", foreignKey = @ForeignKey(name = "fk_commandMapper_fc"))
     @JsonIgnore
     private CommandMapper commandMapper;
 

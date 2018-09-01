@@ -92,6 +92,7 @@ public class SlamHandler implements ControlHandler {
                      */
                     if (todoService.findOneBySlamId(slam.getSlamId()) == null) {
                         Todo todo = todoService.findOneByState("wait");
+                        if (todo==null) return;
                         todo.setSlamId(slam.getSlamId());
                         todo.setState("send");
                         todoService.updateSlamIdAndState(todo);
